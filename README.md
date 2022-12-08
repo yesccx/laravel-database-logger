@@ -47,7 +47,7 @@
 ### 1. 安装
 
 ```shell
-composer require yesccx/laravel-databae-logger:1.*
+composer require yesccx/laravel-database-logger:1.*
 ```
 
 ### 2. 初始化
