@@ -1,0 +1,33 @@
+{
+    "name": "yesccx/laravel-database-logger",
+    "type": "library",
+    "description": "record database execution logs",
+    "keywords": ["laravel", "database log", "log", "yesccx"],
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Yesccx\\DatabaseLogger\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "yesccx",
+            "email": "yes.ccx@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.4",
+        "laravel/framework": ">=5.6",
+        "psr/log": "^1.0|^2.0|^3.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Yesccx\\DatabaseLogger\\LoggerServiceProvider"
+            ]
+        }
+    }
+}
