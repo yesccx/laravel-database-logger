@@ -1,7 +1,7 @@
 {
     "name": "yesccx/laravel-database-logger",
     "type": "library",
-    "description": "record database execution logs",
+    "description": "record database execute logs",
     "keywords": ["laravel", "database log", "log", "yesccx"],
     "license": "MIT",
     "autoload": {
