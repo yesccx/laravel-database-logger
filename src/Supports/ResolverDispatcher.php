@@ -2,7 +2,6 @@
 
 namespace Yesccx\DatabaseLogger\Supports;
 
-use Exception;
 use Illuminate\Database\Events\QueryExecuted;
 
 /**
@@ -66,7 +65,7 @@ class ResolverDispatcher
         foreach (static::getSqlResolvers() as $resolver) {
             try {
                 $executeSql = (new $resolver())->handle($this->rawQuery);
-            } catch (Exception $e) {
+            } catch (\Throwable $e) {
                 $executeSql = null;
             }
 

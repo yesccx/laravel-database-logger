@@ -2,6 +2,6 @@
 
 namespace Yesccx\DatabaseLogger\Exceptions;
 
-class DatabaseLoggerException extends \Exception
+class DatabaseLoggerException extends \Exception implements \Throwable
 {
 }

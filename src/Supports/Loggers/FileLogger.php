@@ -77,7 +77,6 @@ class FileLogger implements LoggerContract
             $logChannel->info('--------------------------------------------------------------------');
             $logChannel->info('UUID:   ' . static::$requestUuid);
             $logChannel->info('URL:    ' . request()->url());
-            $logChannel->info('Action: ' . request()->route()->getActionName() ?? '');
             $logChannel->info('--------------------------------------------------------------------');
 
             static::$outputDecorationStatus = true;

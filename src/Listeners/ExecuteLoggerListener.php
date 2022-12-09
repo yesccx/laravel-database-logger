@@ -2,7 +2,6 @@
 
 namespace Yesccx\DatabaseLogger\Listeners;
 
-use Exception;
 use Illuminate\Database\Events\QueryExecuted;
 use Illuminate\Support\Facades\Log;
 use Yesccx\DatabaseLogger\Supports\LoggerContext;
@@ -44,7 +43,7 @@ final class ExecuteLoggerListener
             LoggerDispatcher::make()->write(
                 $resolvingResult = $resolverDispatcher->getResolvingResult()
             );
-        } catch (Exception $e) {
+        } catch (\Throwable $e) {
             Log::error($e->getMessage());
         }
     }
