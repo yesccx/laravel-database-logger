@@ -29,7 +29,7 @@
 
 | PHP版本      |
 | ------------ |
-| PHP >= 5.6.4 |
+| PHP >= 7.0 |
 
  | Laravel版本 | 包版本 | 支持状态 |
  | :---------- | :----- | :------- |
@@ -140,7 +140,7 @@ class MongoLogger implements LoggerContract
 
 **2. 使用自定义记录器：**
 ```
->env
+> .env
 
 # 日志记录器 驱动类型
 DL_LOGGER_DRIVER=App\Services\DatabaseLogger\MongoLogger

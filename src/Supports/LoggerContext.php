@@ -8,7 +8,7 @@ namespace Yesccx\DatabaseLogger\Supports;
 class LoggerContext
 {
     /**
-     * 安静锁 栈
+     * 静默锁 栈
      * PS: 利用锁栈的形式防止嵌套锁的情况下异常
      *
      * @var array
@@ -41,7 +41,7 @@ class LoggerContext
     }
 
     /**
-     * 锁定 安静锁
+     * 开启 静默锁
      *
      * @return void
      */
@@ -51,7 +51,7 @@ class LoggerContext
     }
 
     /**
-     * 解锁 安静锁
+     * 解除 静默锁
      *
      * @return void
      */
@@ -61,7 +61,7 @@ class LoggerContext
     }
 
     /**
-     * 是否为安静模式
+     * 是否为静默状态
      *
      * @return bool
      */
