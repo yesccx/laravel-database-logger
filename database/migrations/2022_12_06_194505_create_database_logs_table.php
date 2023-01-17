@@ -16,6 +16,7 @@ class CreateDatabaseLogsTable extends Migration
         Schema::create('database_logs', function (Blueprint $table) {
             $table->bigIncrements('id')->comment('自增id');
             $table->longText('ua')->nullable()->comment('User-Agent');
+            $table->text('url')->nullable()->comment('请求地址');
             $table->string('database_type', 32)->default('')->comment('数据库类型;mysql,mongo');
             $table->text('execute_sql')->nullable()->comment('执行的SQL语句');
             $table->bigInteger('execute_time')->default(0)->comment('执行耗时(纳秒)');

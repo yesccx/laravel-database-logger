@@ -31,6 +31,7 @@ class MysqlLogger implements LoggerContract
                 DatabaseLog::query()->create([
                     'database_type'       => $resolvingResult->getRawQuery()->connection->getDriverName(),
                     'ua'                  => request()->userAgent(),
+                    'url'                 => request()->url(),
                     'execute_sql'         => $resolvingResult->getExecuteSql(),
                     'execute_time'        => $resolvingResult->getExecuteTime(),
                     'foramt_execute_time' => $resolvingResult->getFormatExecuteTime(),
