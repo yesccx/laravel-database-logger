@@ -3,14 +3,21 @@
 namespace Yesccx\DatabaseLogger\Supports\Loggers;
 
 use Yesccx\DatabaseLogger\Contracts\LoggerContract;
-use Yesccx\DatabaseLogger\Models\DatabaseLog;
 use Yesccx\DatabaseLogger\Supports\ResolvingResult;
+use Yesccx\DatabaseLogger\Models\DatabaseLog;
 
 /**
  * 记录器-MYSQL
  */
 class MysqlLogger implements LoggerContract
 {
+    /**
+     * 使用的连接名称
+     *
+     * @var string
+     */
+    public static $connectName = '_dl-mysql';
+
     /*
      * 防止 记录器执行时触发 事件
      *
@@ -28,7 +35,13 @@ class MysqlLogger implements LoggerContract
     {
         $this->withLock(
             function () use ($resolvingResult) {
-                DatabaseLog::query()->create([
+                if (config('database-logger.options.connection_isolation', false)) {
+                    $builder = DatabaseLog::on(self::$connectName);
+                } else {
+                    $builder = DatabaseLog::query();
+                }
+
+                $builder->create([
                     'database_type'       => $resolvingResult->getRawQuery()->connection->getDriverName(),
                     'ua'                  => request()->userAgent(),
                     'url'                 => request()->url(),

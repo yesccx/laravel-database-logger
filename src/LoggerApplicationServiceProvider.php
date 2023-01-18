@@ -5,6 +5,7 @@ namespace Yesccx\DatabaseLogger;
 use Illuminate\Database\Events\QueryExecuted;
 use Illuminate\Support\ServiceProvider;
 use Yesccx\DatabaseLogger\Listeners\ExecuteLoggerListener;
+use Yesccx\DatabaseLogger\Supports\Loggers\MysqlLogger;
 use Yesccx\DatabaseLogger\Supports\ResolverDispatcher;
 use Yesccx\DatabaseLogger\Supports\Resolvers\PdoResolver;
 use Yesccx\DatabaseLogger\Supports\Resolvers\StringResolver;
@@ -22,6 +23,8 @@ class LoggerApplicationServiceProvider extends ServiceProvider
             $this->registerEvents();
 
             $this->initSqlResolvers();
+
+            $this->initOptions();
         }
     }
 
@@ -45,6 +48,25 @@ class LoggerApplicationServiceProvider extends ServiceProvider
     protected function initSqlResolvers()
     {
         ResolverDispatcher::setSqlResolvers($this->sqlResolvers());
+    }
+
+    /**
+     * Init Options
+     *
+     * @return void
+     */
+    protected function initOptions()
+    {
+        // Connection when initializing mysql driver
+        if (config('database-logger.logger', '') == 'mysql') {
+
+            $targetConnectionName = config('database-logger.options.mysql_connection', 'mysql');
+            $useConnectName = MysqlLogger::$connectName;
+
+            config([
+                "database.connections.{$useConnectName}" => config("database.connections.{$targetConnectionName}", []),
+            ]);
+        }
     }
 
     /**
