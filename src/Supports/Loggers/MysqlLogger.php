@@ -57,7 +57,7 @@ class MysqlLogger implements LoggerContract
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    protected function makeBuilder(): \Illuminate\Database\Eloquent\Builder
+    protected function makeBuilder()
     {
         return DatabaseLog::on(self::$connectionName);
     }
