@@ -25,11 +25,5 @@ return [
          */
         'mysql_connection' => 'mysql',
 
-        /**
-         * 为 MysqlLogger 使用独立的连接
-         * PS: 这将为日志记录器额外建立一次MySQL连接，因此会影响一定的性能
-         */
-        'connection_isolation' => env('DL_CONNECTION_ISOLATION', false),
-
     ],
 ];

@@ -16,7 +16,7 @@ class MysqlLogger implements LoggerContract
      *
      * @var string
      */
-    public static $connectName = '_dl-mysql';
+    public static $connectionName = '_dl-mysql';
 
     /*
      * 防止 记录器执行时触发 事件
@@ -35,11 +35,8 @@ class MysqlLogger implements LoggerContract
     {
         $this->withLock(
             function () use ($resolvingResult) {
-                if (config('database-logger.options.connection_isolation', false)) {
-                    $builder = DatabaseLog::on(self::$connectName);
-                } else {
-                    $builder = DatabaseLog::query();
-                }
+
+                $builder = $this->makeBuilder();
 
                 $builder->create([
                     'database_type'       => $resolvingResult->getRawQuery()->connection->getDriverName(),
@@ -48,9 +45,21 @@ class MysqlLogger implements LoggerContract
                     'execute_sql'         => $resolvingResult->getExecuteSql(),
                     'execute_time'        => $resolvingResult->getExecuteTime(),
                     'foramt_execute_time' => $resolvingResult->getFormatExecuteTime(),
+                    'created_at'          => now(),
+                    'updated_at'          => now()
                 ]);
             }
         );
+    }
+
+    /**
+     * make builder
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    protected function makeBuilder(): \Illuminate\Database\Eloquent\Builder
+    {
+        return DatabaseLog::on(self::$connectionName);
     }
 
     /**

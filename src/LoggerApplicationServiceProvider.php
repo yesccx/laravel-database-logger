@@ -61,10 +61,10 @@ class LoggerApplicationServiceProvider extends ServiceProvider
         if (config('database-logger.logger', '') == 'mysql') {
 
             $targetConnectionName = config('database-logger.options.mysql_connection', 'mysql');
-            $useConnectName = MysqlLogger::$connectName;
+            $useConnectionName = MysqlLogger::$connectionName;
 
             config([
-                "database.connections.{$useConnectName}" => config("database.connections.{$targetConnectionName}", []),
+                "database.connections.{$useConnectionName}" => config("database.connections.{$targetConnectionName}", []),
             ]);
         }
     }
