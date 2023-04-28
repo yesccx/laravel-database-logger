@@ -58,6 +58,10 @@ class FileLogger implements LoggerContract
                 $resolvingResult->getExecuteSql()
             )
         );
+        //记录文件位置
+        $this->getLogChannel()->info(
+            $resolvingResult->getNoVendorPath()
+        );
     }
 
     /**
