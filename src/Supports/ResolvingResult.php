@@ -85,4 +85,18 @@ class ResolvingResult implements ResolvingResultContract
 
         return $milliseconds;
     }
+
+    /**
+     * 获取执行路径
+     *
+     * @return string
+     */
+    public function getNoVendorPath()
+    {
+        $location = collect(debug_backtrace())->filter(function ($trace) {
+            return !str_contains($trace['file'] ?? '', 'vendor/');
+        })->first();
+
+        return 'File:' . $location['file'] . '  Line:' . $location['line'];
+    }
 }
